@@ -5,13 +5,14 @@ import {
   listarPostsController,
   enviarPostController,
   uploadImagemController,
+  atualizarPostController,
 } from "../controller/postController.js";
 
 // const upload = multer({ dest: "./uploads" });
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/');
+    cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -30,6 +31,8 @@ const routes = (app) => {
   app.post("/posts", enviarPostController);
 
   app.post("/upload", upload.single("image"), uploadImagemController);
+
+  app.put("/upload/:id", atualizarPostController);
 };
 
 export default routes;
