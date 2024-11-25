@@ -1,5 +1,6 @@
 import express from "express";
 import multer from "multer";
+import cors from "cors";
 
 import {
   listarPostsController,
@@ -7,6 +8,11 @@ import {
   uploadImagemController,
   atualizarPostController,
 } from "../controller/postController.js";
+
+const corsOptions = {
+  origin: "http://localhost:8000",
+  optionsSuccesStatus: 200,
+}
 
 // const upload = multer({ dest: "./uploads" });
 
@@ -24,6 +30,7 @@ const upload = multer({ dest: "./uploads" }, storage);
 const routes = (app) => {
   // Middleware to parse JSON request bodies
   app.use(express.json());
+  app.use(cors(corsOptions));
 
   // Define a GET route to fetch all posts
   app.get("/posts", listarPostsController);
