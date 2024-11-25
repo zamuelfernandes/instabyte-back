@@ -1,5 +1,5 @@
 import express from "express";
-import { listarPostsController } from "../controller/controller.js";
+import { listarPostsController, enviarPostController } from "../controller/postController.js";
 
 const routes = (app) => {
   // Middleware to parse JSON request bodies
@@ -7,6 +7,8 @@ const routes = (app) => {
 
   // Define a GET route to fetch all posts
   app.get("/posts", listarPostsController);
+
+  app.post("/posts", enviarPostController);
 };
 
 export default routes;

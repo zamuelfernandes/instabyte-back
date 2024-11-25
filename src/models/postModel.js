@@ -13,3 +13,10 @@ export async function getTodosPosts() {
   // Find all documents in the collection and return them as an array
   return colecao.find().toArray();
 }
+
+export async function criarPost(newPost) {
+  const db = conexao.db("imersao-instabytes");
+  const colecao = db.collection("posts");
+  
+  return colecao.insertOne(newPost);
+}
